@@ -1,0 +1,1010 @@
+Index: ../pom.xml
+===================================================================
+diff --git a/../pom.xml b/../pom.xml
+deleted file mode 100644
+--- a/../pom.xml	(revision e4ab4c5337cb94fb34fa487a1a4945fb6df77a16)
++++ /dev/null	(revision e4ab4c5337cb94fb34fa487a1a4945fb6df77a16)
+@@ -1,22 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project xmlns="http://maven.apache.org/POM/4.0.0"
+-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-    <modelVersion>4.0.0</modelVersion>
+-
+-    <groupId>edu.wctc</groupId>
+-    <artifactId>java-maven-template</artifactId>
+-    <version>1.0-SNAPSHOT</version>
+-    <dependencies>
+-        <dependency>
+-            <groupId>commons-codec</groupId>
+-            <artifactId>commons-codec</artifactId>
+-            <version>1.15</version>
+-        </dependency>
+-    </dependencies>
+-    <properties>
+-        <maven.compiler.source>16</maven.compiler.source>
+-        <maven.compiler.target>16</maven.compiler.target>
+-    </properties>
+-
+-</project>
+\ No newline at end of file
+Index: ../src/main/java/edu/wctc/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.wctc;\r\n\r\nimport java.io.FileReader;\r\nimport java.util.Locale;\r\nimport java.util.Scanner;\r\n\r\npublic class Main {\r\n    public static void main(String[] args) {\r\n        Scanner keyboard = new Scanner(System.in);\r\n\r\n        System.out.println(\"Please enter your firstName\");\r\n        String firstname = keyboard.nextLine().toUpperCase();\r\n        System.out.println(\"Please enter your LastName\");\r\n        String lastname = keyboard.nextLine().toUpperCase();\r\n        System.out.println(\"Please enter your middleInitial\");\r\n        String middleinitial = keyboard.nextLine().toUpperCase();\r\n        System.out.println(\"please enter your birthday year\");\r\n        int Year = Integer.parseInt(keyboard.nextLine());\r\n        System.out.println(\"Please enter your birth month\");\r\n        int Month = Integer.parseInt(keyboard.nextLine());\r\n        System.out.println(\"Please enter your birth day\");\r\n        int Day = Integer.parseInt(keyboard.nextLine());\r\n        System.out.println(\"Please enter your gender\");\r\n        char genderCode = keyboard.nextLine().toUpperCase().charAt(0);\r\n\r\n        try {\r\nDriversLicense driversLicense= new DriversLicense();\r\nFirstNameUtility names = new FirstNameUtility();\r\ndriversLicense.setFFF(names.encodeFirstName(firstname,middleinitial));\r\n            LastNameUtility name = new LastNameUtility();\r\n            driversLicense.setSSSS(name.encodeLastName(lastname));\r\n            MonthDayGenderUtility utility = new MonthDayGenderUtility();\r\n            driversLicense.setYY(Year);\r\n            driversLicense.setDDD(Month);\r\n            driversLicense.setDDD(Day);\r\n            driversLicense.setDDD(genderCode);\r\n        }catch (MissingNameExeception e){\r\n            System.out.println(e.getMessage());\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../src/main/java/edu/wctc/Main.java b/../src/main/java/edu/wctc/Main.java
+--- a/../src/main/java/edu/wctc/Main.java	(revision e4ab4c5337cb94fb34fa487a1a4945fb6df77a16)
++++ b/../src/main/java/edu/wctc/Main.java	(date 1663883517529)
+@@ -8,23 +8,23 @@
+     public static void main(String[] args) {
+         Scanner keyboard = new Scanner(System.in);
+ 
+-        System.out.println("Please enter your firstName");
++        System.out.print("Please enter your firstName: ");
+         String firstname = keyboard.nextLine().toUpperCase();
+-        System.out.println("Please enter your LastName");
++        System.out.print("Please enter your LastName: ");
+         String lastname = keyboard.nextLine().toUpperCase();
+-        System.out.println("Please enter your middleInitial");
++        System.out.print("Please enter your middleInitial: ");
+         String middleinitial = keyboard.nextLine().toUpperCase();
+-        System.out.println("please enter your birthday year");
++        System.out.print("please enter your birthday year: ");
+         int Year = Integer.parseInt(keyboard.nextLine());
+-        System.out.println("Please enter your birth month");
++        System.out.print("Please enter your birth month: ");
+         int Month = Integer.parseInt(keyboard.nextLine());
+-        System.out.println("Please enter your birth day");
++        System.out.print("Please enter your birth day: ");
+         int Day = Integer.parseInt(keyboard.nextLine());
+-        System.out.println("Please enter your gender");
++        System.out.print("Please enter your gender: ");
+         char genderCode = keyboard.nextLine().toUpperCase().charAt(0);
+-
+-        try {
+-DriversLicense driversLicense= new DriversLicense();
++        DriversLicense driversLicense= new DriversLicense();
++        try {
++
+ FirstNameUtility names = new FirstNameUtility();
+ driversLicense.setFFF(names.encodeFirstName(firstname,middleinitial));
+             LastNameUtility name = new LastNameUtility();
+@@ -36,6 +36,9 @@
+             driversLicense.setDDD(genderCode);
+         }catch (MissingNameExeception e){
+             System.out.println(e.getMessage());
++
+         }
++        DriversLicenseFormatter wisconsin = new WisconsinFormatter();
++       System.out.println(wisconsin.formatLicenseNumber(driversLicense));
+     }
+ }
+\ No newline at end of file
+Index: java-racecar-starter.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/java-racecar-starter.iml b/java-racecar-starter.iml
+new file mode 100644
+--- /dev/null	(date 1664908363630)
++++ b/java-racecar-starter.iml	(date 1664908363630)
+@@ -0,0 +1,21 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
++    <output url="file://$MODULE_DIR$/target/classes" />
++    <output-test url="file://$MODULE_DIR$/target/test-classes" />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
++      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
++      <excludeFolder url="file://$MODULE_DIR$/target" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:19" level="project" />
++    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:win:19" level="project" />
++    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:19" level="project" />
++    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:win:19" level="project" />
++    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:19" level="project" />
++    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:win:19" level="project" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../src/main/java/edu/wctc/WisconsinFormatter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.wctc;\r\n\r\n\r\npublic class WisconsinFormatter implements DriversLicenseFormatter{\r\n    @Override\r\n    public String formatLicenseNumber(DriversLicense driversLicense){\r\n\r\n        return String.format(\"%f-%s-%y-%d-%n\",driversLicense.getFFF(),driversLicense.getSSSS(),driversLicense.getYY(),driversLicense.getYY(),driversLicense.getDDD(),driversLicense.getNN());\r\n}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../src/main/java/edu/wctc/WisconsinFormatter.java b/../src/main/java/edu/wctc/WisconsinFormatter.java
+--- a/../src/main/java/edu/wctc/WisconsinFormatter.java	(revision e4ab4c5337cb94fb34fa487a1a4945fb6df77a16)
++++ b/../src/main/java/edu/wctc/WisconsinFormatter.java	(date 1663883517639)
+@@ -3,7 +3,7 @@
+ 
+ public class WisconsinFormatter implements DriversLicenseFormatter{
+     @Override
+-    public String formatLicenseNumber(DriversLicense driversLicense){
++    public  String formatLicenseNumber(DriversLicense driversLicense){
+ 
+         return String.format("%f-%s-%y-%d-%n",driversLicense.getFFF(),driversLicense.getSSSS(),driversLicense.getYY(),driversLicense.getYY(),driversLicense.getDDD(),driversLicense.getNN());
+ }
+Index: ../src/main/java/edu/wctc/LastNameUtility.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.wctc;\r\n\r\n\r\nimport org.apache.commons.codec.language.Soundex;\r\n\r\npublic class LastNameUtility {\r\n    private Soundex soundex;\r\n    public String encodeLastName (String LastName)throws MissingNameExeception{\r\nif(LastName.equals(\"\")){\r\n    throw new MissingNameExeception(\"LastName\");\r\n}\r\nreturn soundex.encode(LastName);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../src/main/java/edu/wctc/LastNameUtility.java b/../src/main/java/edu/wctc/LastNameUtility.java
+--- a/../src/main/java/edu/wctc/LastNameUtility.java	(revision e4ab4c5337cb94fb34fa487a1a4945fb6df77a16)
++++ b/../src/main/java/edu/wctc/LastNameUtility.java	(date 1663883517502)
+@@ -4,11 +4,14 @@
+ import org.apache.commons.codec.language.Soundex;
+ 
+ public class LastNameUtility {
+-    private Soundex soundex;
+-    public String encodeLastName (String LastName)throws MissingNameExeception{
+-if(LastName.equals("")){
+-    throw new MissingNameExeception("LastName");
+-}
+-return soundex.encode(LastName);
++    private Soundex soundex = new Soundex();
++
++    public String encodeLastName(String LastName) throws MissingNameExeception {
++        if ( LastName == null) {
++            throw new MissingNameExeception("LastName");
++
++        }
++
++        return soundex.encode(LastName);
+     }
+ }
+Index: ../Thing/Thing.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Thing/Thing.iml b/../Thing/Thing.iml
+new file mode 100644
+--- /dev/null	(date 1661882614875)
++++ b/../Thing/Thing.iml	(date 1661882614875)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../work/work.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../work/work.iml b/../work/work.iml
+new file mode 100644
+--- /dev/null	(date 1662684936714)
++++ b/../work/work.iml	(date 1662684936714)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: src/main/java/edu/wctc/racecar/AnimateCarTask.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/wctc/racecar/AnimateCarTask.java b/src/main/java/edu/wctc/racecar/AnimateCarTask.java
+new file mode 100644
+--- /dev/null	(date 1665078387431)
++++ b/src/main/java/edu/wctc/racecar/AnimateCarTask.java	(date 1665078387431)
+@@ -0,0 +1,29 @@
++package edu.wctc.racecar;
++
++import javafx.application.Platform;
++
++public class AnimateCarTask implements Runnable {
++
++    public AnimateCarTask(Car car) {
++        this.car = car;
++    }
++
++    final Car car;
++
++    @Override
++    public void run() {
++        boolean notInterrupted = true;
++        while (notInterrupted) {
++            Platform.runLater(car::move);
++            try{
++                Thread.sleep(25-car.getSpeed());
++            }catch (InterruptedException e){
++                System.out.println("Completed");
++                notInterrupted = false;
++            }
++
++            }
++        }
++    }
++
++
+Index: .idea/libraries/Maven__org_openjfx_javafx_controls_win_19.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Maven__org_openjfx_javafx_controls_win_19.xml b/.idea/libraries/Maven__org_openjfx_javafx_controls_win_19.xml
+new file mode 100644
+--- /dev/null	(date 1664908363727)
++++ b/.idea/libraries/Maven__org_openjfx_javafx_controls_win_19.xml	(date 1664908363727)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Maven: org.openjfx:javafx-controls:win:19">
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/19/javafx-controls-19-win.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/19/javafx-controls-19-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/19/javafx-controls-19-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__org_openjfx_javafx_graphics_19.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Maven__org_openjfx_javafx_graphics_19.xml b/.idea/libraries/Maven__org_openjfx_javafx_graphics_19.xml
+new file mode 100644
+--- /dev/null	(date 1664908363747)
++++ b/.idea/libraries/Maven__org_openjfx_javafx_graphics_19.xml	(date 1664908363747)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Maven: org.openjfx:javafx-graphics:19">
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/19/javafx-graphics-19.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/19/javafx-graphics-19-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/19/javafx-graphics-19-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__org_openjfx_javafx_graphics_win_19.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_19.xml b/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_19.xml
+new file mode 100644
+--- /dev/null	(date 1664908363766)
++++ b/.idea/libraries/Maven__org_openjfx_javafx_graphics_win_19.xml	(date 1664908363766)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Maven: org.openjfx:javafx-graphics:win:19">
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/19/javafx-graphics-19-win.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/19/javafx-graphics-19-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/19/javafx-graphics-19-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: ../Lab 4/Lab 4.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Lab 4/Lab 4.iml b/../Lab 4/Lab 4.iml
+new file mode 100644
+--- /dev/null	(date 1662686784893)
++++ b/../Lab 4/Lab 4.iml	(date 1662686784893)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/work/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/libraries/Maven__org_openjfx_javafx_base_19.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Maven__org_openjfx_javafx_base_19.xml b/.idea/libraries/Maven__org_openjfx_javafx_base_19.xml
+new file mode 100644
+--- /dev/null	(date 1664908363670)
++++ b/.idea/libraries/Maven__org_openjfx_javafx_base_19.xml	(date 1664908363670)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Maven: org.openjfx:javafx-base:19">
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/19/javafx-base-19.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/19/javafx-base-19-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/19/javafx-base-19-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__org_openjfx_javafx_base_win_19.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Maven__org_openjfx_javafx_base_win_19.xml b/.idea/libraries/Maven__org_openjfx_javafx_base_win_19.xml
+new file mode 100644
+--- /dev/null	(date 1664908363689)
++++ b/.idea/libraries/Maven__org_openjfx_javafx_base_win_19.xml	(date 1664908363689)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Maven: org.openjfx:javafx-base:win:19">
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/19/javafx-base-19-win.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/19/javafx-base-19-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-base/19/javafx-base-19-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: .idea/libraries/Maven__org_openjfx_javafx_controls_19.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/libraries/Maven__org_openjfx_javafx_controls_19.xml b/.idea/libraries/Maven__org_openjfx_javafx_controls_19.xml
+new file mode 100644
+--- /dev/null	(date 1664908363707)
++++ b/.idea/libraries/Maven__org_openjfx_javafx_controls_19.xml	(date 1664908363707)
+@@ -0,0 +1,13 @@
++<component name="libraryTable">
++  <library name="Maven: org.openjfx:javafx-controls:19">
++    <CLASSES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/19/javafx-controls-19.jar!/" />
++    </CLASSES>
++    <JAVADOC>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/19/javafx-controls-19-javadoc.jar!/" />
++    </JAVADOC>
++    <SOURCES>
++      <root url="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/19/javafx-controls-19-sources.jar!/" />
++    </SOURCES>
++  </library>
++</component>
+\ No newline at end of file
+Index: ../src/Java.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../src/Java.iml b/../src/Java.iml
+new file mode 100644
+--- /dev/null	(date 1660934155000)
++++ b/../src/Java.iml	(date 1660934155000)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../assignment-2-Jade648-master/java-project.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../assignment-2-Jade648-master/java-project.iml b/../assignment-2-Jade648-master/java-project.iml
+new file mode 100644
+--- /dev/null	(date 1661136881376)
++++ b/../assignment-2-Jade648-master/java-project.iml	(date 1661136881376)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
++
+Index: ../.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_17\" default=\"true\" project-jdk-name=\"16\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../.idea/misc.xml b/../.idea/misc.xml
+--- a/../.idea/misc.xml	(revision e4ab4c5337cb94fb34fa487a1a4945fb6df77a16)
++++ b/../.idea/misc.xml	(date 1664905049890)
+@@ -1,6 +1,5 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="MavenProjectsManager">
+     <option name="originalFiles">
+       <list>
+@@ -8,7 +7,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="16" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" default="true" project-jdk-name="12" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file
+Index: ../java-prisoners-dilemma-master/java-prisoners-dilemma.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../java-prisoners-dilemma-master/java-prisoners-dilemma.iml b/../java-prisoners-dilemma-master/java-prisoners-dilemma.iml
+new file mode 100644
+--- /dev/null	(date 1661276265277)
++++ b/../java-prisoners-dilemma-master/java-prisoners-dilemma.iml	(date 1661276265277)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
++
+Index: ../Album Timeline/Album Timeline.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Album Timeline/Album Timeline.iml b/../Album Timeline/Album Timeline.iml
+new file mode 100644
+--- /dev/null	(date 1663609576712)
++++ b/../Album Timeline/Album Timeline.iml	(date 1663609576712)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1664905713900)
++++ b/.idea/modules.xml	(date 1664905713900)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/java-racecar-starter.iml" filepath="$PROJECT_DIR$/java-racecar-starter.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: ../IdeaProjects/Meals Types/Meals Types.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../IdeaProjects/Meals Types/Meals Types.iml b/../IdeaProjects/Meals Types/Meals Types.iml
+new file mode 100644
+--- /dev/null	(date 1662661443247)
++++ b/../IdeaProjects/Meals Types/Meals Types.iml	(date 1662661443247)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/$PRODUCT_WORKSPACE_FILE$
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/$PRODUCT_WORKSPACE_FILE$ b/.idea/$PRODUCT_WORKSPACE_FILE$
+new file mode 100644
+--- /dev/null	(date 1664905713754)
++++ b/.idea/$PRODUCT_WORKSPACE_FILE$	(date 1664905713754)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="masterDetails">
++    <states>
++      <state key="ProjectJDKs.UI">
++        <settings>
++          <last-edited>12</last-edited>
++          <splitter-proportions>
++            <option name="proportions">
++              <list>
++                <option value="0.2" />
++              </list>
++            </option>
++          </splitter-proportions>
++        </settings>
++      </state>
++    </states>
++  </component>
++</project>
+\ No newline at end of file
+Index: ../IdeaProjects/lambda/lambda.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../IdeaProjects/lambda/lambda.iml b/../IdeaProjects/lambda/lambda.iml
+new file mode 100644
+--- /dev/null	(date 1663698347238)
++++ b/../IdeaProjects/lambda/lambda.iml	(date 1663698347238)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../Client/.idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Client/.idea/modules.xml b/../Client/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1664910501302)
++++ b/../Client/.idea/modules.xml	(date 1664910501302)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/Client.iml" filepath="$PROJECT_DIR$/Client.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: ../Client/.idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Client/.idea/misc.xml b/../Client/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1664910501383)
++++ b/../Client/.idea/misc.xml	(date 1664910501383)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="18" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: ../assignment-6-Jade648-master/java-project.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../assignment-6-Jade648-master/java-project.iml b/../assignment-6-Jade648-master/java-project.iml
+new file mode 100644
+--- /dev/null	(date 1663884063187)
++++ b/../assignment-6-Jade648-master/java-project.iml	(date 1663884063187)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
++
+Index: ../Client/.idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Client/.idea/vcs.xml b/../Client/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1664910501518)
++++ b/../Client/.idea/vcs.xml	(date 1664910501518)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: ../work/work/work.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../work/work/work.iml b/../work/work/work.iml
+new file mode 100644
+--- /dev/null	(date 1662659023117)
++++ b/../work/work/work.iml	(date 1662659023117)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../src/Java Projects.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../src/Java Projects.iml b/../src/Java Projects.iml
+new file mode 100644
+--- /dev/null	(date 1664905487239)
++++ b/../src/Java Projects.iml	(date 1664905487239)
+@@ -0,0 +1,12 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
++      <sourceFolder url="file://$MODULE_DIR$/main/java" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1664905842579)
++++ b/.idea/vcs.xml	(date 1664905842579)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: ../Hello/Hello.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Hello/Hello.iml b/../Hello/Hello.iml
+new file mode 100644
+--- /dev/null	(date 1660675845004)
++++ b/../Hello/Hello.iml	(date 1660675845004)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: ../.idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"CompilerConfiguration\">\r\n    <annotationProcessing>\r\n      <profile name=\"Maven default annotation processors profile\" enabled=\"true\">\r\n        <sourceOutputDir name=\"target/generated-sources/annotations\" />\r\n        <sourceTestOutputDir name=\"target/generated-test-sources/test-annotations\" />\r\n        <outputRelativeToContentRoot value=\"true\" />\r\n        <module name=\"java-maven-template\" />\r\n      </profile>\r\n    </annotationProcessing>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../.idea/compiler.xml b/../.idea/compiler.xml
+--- a/../.idea/compiler.xml	(revision e4ab4c5337cb94fb34fa487a1a4945fb6df77a16)
++++ b/../.idea/compiler.xml	(date 1664905049755)
+@@ -6,8 +6,11 @@
+         <sourceOutputDir name="target/generated-sources/annotations" />
+         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+         <outputRelativeToContentRoot value="true" />
+-        <module name="java-maven-template" />
++        <module name="java-racecar-starter" />
+       </profile>
+     </annotationProcessing>
++    <bytecodeTargetLevel>
++      <module name="java-racecar-starter" target="11" />
++    </bytecodeTargetLevel>
+   </component>
+ </project>
+\ No newline at end of file
+Index: ../Client/.idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Client/.idea/.gitignore b/../Client/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1664910508785)
++++ b/../Client/.idea/.gitignore	(date 1664910508785)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
+Index: ../Server/src/EchoClient.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Server/src/EchoClient.java b/../Server/src/EchoClient.java
+new file mode 100644
+--- /dev/null	(date 1664911075864)
++++ b/../Server/src/EchoClient.java	(date 1664911075864)
+@@ -0,0 +1,31 @@
++import java.net.UnknownHostException;Main{
++
++public static void main(String[]args){
++public class EchoClient {
++
++        String hostName = args[0];
++        int portNumber = Integer.parseInt(args[1]);
++
++try (
++        Socket echoSocket = new Socket(hostName, portNumber);        // 1st statement
++        PrintWriter out =                                            // 2nd statement
++                new PrintWriter(echoSocket.getOutputStream(), true);
++        BufferedReader in =                                          // 3rd statement
++                new BufferedReader(
++                        new InputStreamReader(echoSocket.getInputStream()));
++        BufferedReader stdIn =                                       // 4th statement
++                new BufferedReader(
++                        new InputStreamReader(System.in))
++)
++        String userInput;
++while ((userInput = stdIn.readLine()) != null) {
++            out.println(userInput);
++            System.out.println("echo: " + in.readLine());
++        }catch (UnknownHostException e){
++
++        }
++}
++    }
++
++
++
+Index: ../IdeaProjects/File IO/File IO.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../IdeaProjects/File IO/File IO.iml b/../IdeaProjects/File IO/File IO.iml
+new file mode 100644
+--- /dev/null	(date 1662489437232)
++++ b/../IdeaProjects/File IO/File IO.iml	(date 1662489437232)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+new file mode 100644
+--- /dev/null	(date 1664905713841)
++++ b/.idea/jarRepositories.xml	(date 1664905713841)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Central Repository" />
++      <option name="url" value="https://repo.maven.apache.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1664905713785)
++++ b/.idea/compiler.xml	(date 1664905713785)
+@@ -0,0 +1,16 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <annotationProcessing>
++      <profile name="Maven default annotation processors profile" enabled="true">
++        <sourceOutputDir name="target/generated-sources/annotations" />
++        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
++        <outputRelativeToContentRoot value="true" />
++        <module name="java-racecar-starter" />
++      </profile>
++    </annotationProcessing>
++    <bytecodeTargetLevel>
++      <module name="java-racecar-starter" target="11" />
++    </bytecodeTargetLevel>
++  </component>
++</project>
+\ No newline at end of file
+Index: ../Lab 4/work/work.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/../Lab 4/work/work.iml b/../Lab 4/work/work.iml
+new file mode 100644
+--- /dev/null	(date 1662685109110)
++++ b/../Lab 4/work/work.iml	(date 1662685109110)
+@@ -0,0 +1,11 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$">
++      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
++    </content>
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+new file mode 100644
+--- /dev/null	(date 1664905713812)
++++ b/.idea/encodings.xml	(date 1664905713812)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
++    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1664905842600)
++++ b/.idea/misc.xml	(date 1664905842600)
+@@ -0,0 +1,13 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="MavenProjectsManager">
++    <option name="originalFiles">
++      <list>
++        <option value="$PROJECT_DIR$/pom.xml" />
++      </list>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_18" default="true" project-jdk-name="12" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
